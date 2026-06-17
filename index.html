@@ -83,6 +83,19 @@
 
         .nav-cta::after { display: none !important; }
 
+        .lang-toggle {
+            display: flex; background: var(--cream);
+            border: 1px solid var(--border); border-radius: 10px; padding: 3px;
+        }
+
+        .lang-btn {
+            padding: 0.3rem 0.8rem; border-radius: 8px; border: none;
+            background: transparent; color: var(--gray);
+            font-family: 'Cairo', sans-serif; font-size: 0.78rem;
+            font-weight: 700; cursor: pointer; transition: all 0.3s;
+        }
+
+        .lang-btn.active { background: var(--green); color: var(--white); }
 
         /* ===== HERO ===== */
         .hero {
@@ -436,6 +449,37 @@
             font-size: 0.88rem; font-weight: 600; color: var(--dark);
         }
 
+        /* ===== SECTORS ===== */
+        .sectors-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem; margin-top: 3rem;
+        }
+
+        .sector-card {
+            background: var(--white); border: 1px solid var(--border);
+            border-radius: 20px; padding: 2.5rem 2rem;
+            text-align: center; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .sector-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.06);
+            border-color: rgba(201,168,76,0.3);
+        }
+
+        .sector-icon {
+            font-size: 2.5rem; margin-bottom: 1rem;
+        }
+
+        .sector-card h3 {
+            font-size: 1.2rem; font-weight: 800;
+            color: var(--green); margin-bottom: 0.6rem;
+        }
+
+        .sector-card p {
+            font-size: 0.95rem; color: var(--gray); line-height: 1.75;
+        }
+
         /* ===== DOWNLOAD ===== */
         .download {
             padding: 7rem 4rem;
@@ -538,6 +582,8 @@
             font-size: 1.02rem; color: var(--gray);
             line-height: 1.75; margin-bottom: 2.5rem;
         }
+
+        .contact-details-grid { display: contents; }
 
         .contact-detail {
             display: flex; align-items: center;
@@ -681,18 +727,225 @@
 
         @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
+        /* LTR */
+        html[dir="ltr"] .nav-links a::after { right: auto; left: 0; }
+        html[dir="ltr"] .store-btn .store-text,
+        html[dir="ltr"] .dl-btn .btn-text { text-align: left; }
+        html[dir="ltr"] .contact-detail div p { text-align: left; }
+        html[dir="ltr"] .form-group input,
+        html[dir="ltr"] .form-group textarea { direction: ltr; }
+        html[dir="ltr"] .feature-card::after { right: auto; left: 0; border-radius: 0 0 4px 0; }
+
+        /* ===== MOBILE MENU ===== */
+        .menu-toggle {
+            display: none;
+            background: none; border: none; cursor: pointer;
+            width: 44px; height: 44px;
+            align-items: center; justify-content: center;
+            padding: 0; z-index: 1001;
+        }
+
+        .menu-toggle span {
+            display: block; width: 24px; height: 2.5px;
+            background: var(--dark); border-radius: 2px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .menu-toggle span::before,
+        .menu-toggle span::after {
+            content: ''; position: absolute;
+            width: 24px; height: 2.5px;
+            background: var(--dark); border-radius: 2px;
+            transition: all 0.3s;
+            right: 0;
+        }
+
+        .menu-toggle span::before { top: -7px; }
+        .menu-toggle span::after { top: 7px; }
+
+        .nav-open .menu-toggle span { background: transparent; }
+        .nav-open .menu-toggle span::before { top: 0; transform: rotate(45deg); }
+        .nav-open .menu-toggle span::after { top: 0; transform: rotate(-45deg); }
+
+        /* ===== RESPONSIVE — TABLET (768px) ===== */
+        @media (max-width: 768px) {
+            .menu-toggle { display: flex; }
+
+            .navbar { padding: 1rem 1.5rem; }
+            .navbar.scrolled { padding: 0.7rem 1.5rem; }
+
+            .nav-links {
+                position: fixed; top: 0; right: -100%; width: 75%; max-width: 320px;
+                height: 100vh; background: var(--white);
+                flex-direction: column; align-items: stretch;
+                padding: 5rem 2rem 2rem; gap: 0;
+                box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+                transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+                z-index: 1000; overflow-y: auto;
+            }
+
+            .nav-open .nav-links { right: 0; }
+
+            .nav-links li { border-bottom: 1px solid var(--border); }
+
+            .nav-links a {
+                display: block; padding: 1rem 0;
+                font-size: 1rem;
+            }
+
+            .nav-links a::after { display: none; }
+
+            .nav-cta {
+                margin-top: 1rem; text-align: center;
+                display: block; padding: 0.8rem 1.4rem !important;
+            }
+
+            .nav-overlay {
+                display: none; position: fixed; inset: 0;
+                background: rgba(0,0,0,0.4); z-index: 999;
+            }
+
+            .nav-open .nav-overlay { display: block; }
+
+            .hero { padding: 6rem 1.5rem 3rem; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero-desc { font-size: 1rem; margin-bottom: 2rem; }
+            .hero-decorations { gap: 1.5rem; margin-top: 3rem; }
+            .hero-stat .num { font-size: 1.8rem; }
+            .hero-stat .lbl { font-size: 0.72rem; }
+
+            .hero-orb.o1 { width: 350px; height: 350px; }
+            .hero-orb.o2 { width: 250px; height: 250px; }
+            .hero-orb.o3 { width: 120px; height: 120px; }
+
+            .features { padding: 4rem 1.5rem; }
+            .features-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+
+            .section-header { margin-bottom: 2.5rem; }
+            .section-title { font-size: 2rem; }
+            .section-desc { font-size: 0.95rem; }
+
+            .stats-section { padding: 3rem 1.5rem; }
+            .stats-divider { display: none; }
+            .stats-grid { gap: 1.5rem; justify-content: center; }
+            .stat-item .stat-num { font-size: 2.2rem; }
+
+            .industries { padding: 4rem 1.5rem; }
+            .industries-grid { grid-template-columns: repeat(2, 1fr); }
+            .sectors-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+
+            .download { padding: 4rem 1.5rem; }
+            .download-card { padding: 3rem 1.5rem; border-radius: 24px; }
+            .download h2 { font-size: 2rem; }
+            .download p { font-size: 0.95rem; }
+
+            .contact { padding: 4rem 1.5rem; }
+            .contact-wrapper { grid-template-columns: 1fr; gap: 2.5rem; }
+            .contact-info h2 { font-size: 2rem; }
+
+            .contact-details-grid {
+                display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;
+            }
+            .contact-detail { margin-bottom: 0; }
+
+            .footer { padding: 3rem 1.5rem 1.5rem; }
+            .footer-top { flex-direction: column; gap: 2rem; }
+            .footer-brand p { max-width: 100%; }
+        }
+
+        /* ===== RESPONSIVE — MOBILE (480px) ===== */
+        @media (max-width: 480px) {
+            .hero { padding: 5.5rem 1rem 2.5rem; min-height: auto; }
+            .hero h1 { font-size: 1.9rem; line-height: 1.3; }
+            .hero-desc { font-size: 0.92rem; line-height: 1.7; }
+
+            .hero-decorations { gap: 1rem; }
+            .hero-stat .num { font-size: 1.5rem; }
+            .hero-stat .lbl { font-size: 0.68rem; }
+            .stat-divider { height: 30px; }
+
+            .hero-orb.o1 { width: 250px; height: 250px; }
+            .hero-orb.o2 { width: 180px; height: 180px; }
+            .hero-orb.o3 { display: none; }
+
+            .hero-buttons, .download-buttons { flex-wrap: nowrap; }
+            .store-btn { padding: 0.8rem 1.2rem; flex: 1; min-width: 0; }
+            .store-btn svg { width: 20px; height: 20px; }
+            .store-btn .store-text span { font-size: 0.85rem; }
+            .store-btn .store-text small { font-size: 0.58rem; }
+
+            .features { padding: 3rem 1rem; }
+            .features-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+            .feature-card { padding: 1.3rem 1rem; }
+            .feature-card h3 { font-size: 0.95rem; }
+            .feature-card p { font-size: 0.82rem; }
+            .feature-icon-wrap { width: 42px; height: 42px; font-size: 1.1rem; margin-bottom: 0.8rem; }
+
+            .section-title { font-size: 1.7rem; }
+            .section-label { font-size: 0.75rem; letter-spacing: 1.5px; }
+
+            .stats-section { padding: 2.5rem 1rem; }
+            .stats-grid {
+                display: grid; grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem; text-align: center;
+            }
+            .stats-divider { display: none; }
+            .stat-item .stat-num { font-size: 2rem; }
+
+            .industries { padding: 3rem 1rem; }
+            .industries-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+            .industry-chip { padding: 0.8rem; gap: 0.5rem; }
+            .industry-chip .ic-icon { width: 34px; height: 34px; font-size: 1rem; }
+            .industry-chip span { font-size: 0.78rem; }
+            .sectors-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .sector-card { padding: 1.5rem 1rem; }
+            .sector-icon { font-size: 2rem; }
+            .sector-card h3 { font-size: 1.05rem; }
+            .sector-card p { font-size: 0.88rem; }
+
+            .download { padding: 3rem 1rem; }
+            .download-card { padding: 2.5rem 1.2rem; border-radius: 20px; }
+            .download h2 { font-size: 1.8rem; }
+            .download-buttons { flex-wrap: nowrap; }
+            .dl-btn { padding: 0.7rem 1rem; flex: 1; min-width: 0; justify-content: center; }
+            .dl-btn svg { width: 20px; height: 20px; }
+            .dl-btn .btn-text span { font-size: 0.85rem; }
+            .dl-btn .btn-text small { font-size: 0.58rem; }
+
+            .contact { padding: 3rem 1rem; }
+            .contact-info h2 { font-size: 1.8rem; }
+            .contact-form { padding: 1.5rem; border-radius: 18px; }
+            .contact-details-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+            .contact-detail { gap: 0.6rem; }
+            .contact-detail-icon { width: 36px; height: 36px; border-radius: 10px; }
+            .contact-detail-icon svg { width: 16px; height: 16px; }
+            .contact-detail div h4 { font-size: 0.78rem; }
+            .contact-detail div p { font-size: 0.75rem; }
+
+            .footer { padding: 2.5rem 1rem 1.5rem; }
+        }
+
     </style>
 </head>
 <body>
 
     <!-- NAVBAR -->
     <nav class="navbar" id="navbar">
-        <a href="#hero" class="nav-logo"><span class="im">Im</span><span class="dedi">dedi</span></a>
+        <a href="#hero" class="nav-logo"><span class="im">إمدا</span><span class="dedi">دي</span></a>
+        <button class="menu-toggle" id="menuToggle" aria-label="القائمة"><span></span></button>
+        <div class="nav-overlay" id="navOverlay"></div>
         <ul class="nav-links">
             <li><a href="#hero" data-i18n="nav.home">الرئيسية</a></li>
             <li><a href="#features" data-i18n="nav.features">المميزات</a></li>
             <li><a href="#download" data-i18n="nav.download">تحميل التطبيق</a></li>
             <li><a href="#contact" data-i18n="nav.contact">تواصل معنا</a></li>
+            <li>
+                <div class="lang-toggle">
+                    <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+                    <button class="lang-btn active" data-lang="ar" onclick="setLang('ar')">ع</button>
+                </div>
+            </li>
             <li><a href="#download" class="nav-cta" data-i18n="nav.downloadCta">تحميل التطبيق</a></li>
         </ul>
     </nav>
@@ -705,8 +958,8 @@
         <div class="hero-grid-bg"></div>
         <div class="hero-content">
             <div class="hero-badge" data-i18n="hero.badge">وفّر وقتك، فلوسك، وجهدك</div>
-            <h1 data-i18n-html="hero.title">كل احتياجاتك بـ<span class="highlight">أسعار الجملة</span> بضغطة زر</h1>
-            <p class="hero-desc" data-i18n="hero.desc">كل احتياجاتك من المياه والمشروبات الغازية بأسعار الجملة. لا تشيل هم المشاوير والتحميل… اطلب كل اللي تحتاجه بضغطة زر وتوصيل سريع لباب بيتك.</p>
+            <h1 data-i18n-html="hero.title">توصيل المياه والمشروبات إلى <span class="highlight">باب بيتك</span></h1>
+            <p class="hero-desc" data-i18n="hero.desc">اطلب بسهولة من إمدادي، واستمتع بتوصيل سريع وموثوق في الدمام والخبر والظهران. لا تشيل هم المشاوير والتحميل… اطلب كل اللي تحتاجه بضغطة زر وتوصيل سريع لباب بيتك.</p>
             <div class="hero-buttons">
                 <a href="https://apps.apple.com/us/app/imdedi-%D8%A5%D9%85%D8%AF%D8%A7%D8%AF%D9%8A/id6744315350" target="_blank" rel="noopener" class="store-btn">
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
@@ -719,18 +972,18 @@
             </div>
             <div class="hero-decorations">
                 <div class="hero-stat">
-                    <div class="num" data-i18n-html="stat.products"><span class="gold">+500</span></div>
-                    <div class="lbl" data-i18n="stat.productsLabel">منتج متاح</div>
+                    <div class="num" data-i18n-html="stat.cities"><span class="gold">5</span></div>
+                    <div class="lbl" data-i18n="stat.citiesLabel">مدن مخدومة</div>
                 </div>
                 <div class="stat-divider"></div>
                 <div class="hero-stat">
-                    <div class="num" data-i18n-html="stat.sectors"><span class="gold">+10</span></div>
-                    <div class="lbl" data-i18n="stat.sectorsLabel">قطاعات مخدومة</div>
+                    <div class="num" data-i18n-html="stat.prices"><span class="gold">100%</span></div>
+                    <div class="lbl" data-i18n="stat.pricesLabel">أسعار واضحة</div>
                 </div>
                 <div class="stat-divider"></div>
                 <div class="hero-stat">
-                    <div class="num" data-i18n-html="stat.delivery"><span class="gold">24/7</span></div>
-                    <div class="lbl" data-i18n="stat.deliveryLabel">دعم متواصل</div>
+                    <div class="num" data-i18n-html="stat.support"><span class="gold">24/7</span></div>
+                    <div class="lbl" data-i18n="stat.supportLabel">دعم متواصل</div>
                 </div>
             </div>
         </div>
@@ -759,39 +1012,39 @@
         <div class="features-inner">
             <div class="section-header">
                 <div class="section-label anim" data-i18n="features.label">لماذا تختار إمدادي</div>
-                <h2 class="section-title anim" data-i18n-html="features.title">مشتريات ذكية، <span class="highlight">مبسطة.</span></h2>
-                <p class="section-desc anim" data-i18n="features.desc">كل ما تحتاجه شركتك لشراء وتتبع واستلام المنتجات — في منصة واحدة قوية.</p>
+                <h2 class="section-title anim" data-i18n-html="features.title">طلب سهلة وتوصيل <span class="highlight">موثوق.</span></h2>
+                <p class="section-desc anim" data-i18n="features.desc">نوصل المياه والمشروبات التي تحتاجها بسرعة وموثوقية إلى باب منزلك.</p>
             </div>
             <div class="features-grid">
                 <div class="feature-card anim d1">
-                    <div class="feature-icon-wrap">📦</div>
-                    <h3 data-i18n="features.f1.title">اختيار منتجات مختارة بعناية</h3>
-                    <p data-i18n="features.f1.desc">تمتع بالوصول إلى مجموعة مختارة بعناية من المنتجات عالية الطلب، من موردين موثوقين في جميع أنحاء المملكة.</p>
+                    <div class="feature-icon-wrap">💧</div>
+                    <h3 data-i18n="features.f1.title">منتجاتك المفضلة في مكان واحد</h3>
+                    <p data-i18n="features.f1.desc">اطلب المياه والمشروبات بسهولة من تطبيق واحد بدلاً من التنقل بين عدة متاجر.</p>
                 </div>
                 <div class="feature-card anim d2">
-                    <div class="feature-icon-wrap">🤖</div>
-                    <h3 data-i18n="features.f2.title">رؤى مدعومة بالذكاء الاصطناعي</h3>
-                    <p data-i18n="features.f2.desc">استفد من التوصيات المخصصة التي تبسط قرارات الشراء وتوفر الوقت الثمين.</p>
+                    <div class="feature-icon-wrap">🚚</div>
+                    <h3 data-i18n="features.f2.title">توصيل سريع حتى باب المنزل</h3>
+                    <p data-i18n="features.f2.desc">استلم طلبك بكل راحة دون عناء المشاوير أو حمل الكراتين الثقيلة.</p>
                 </div>
                 <div class="feature-card anim d3">
-                    <div class="feature-icon-wrap">🚛</div>
-                    <h3 data-i18n="features.f3.title">خيارات توصيل مرنة</h3>
-                    <p data-i18n="features.f3.desc">جدولة التوصيلات حسب راحتك. خدمات لوجستية شاملة من الميل الأول إلى الأخير.</p>
+                    <div class="feature-icon-wrap">💰</div>
+                    <h3 data-i18n="features.f3.title">أسعار واضحة</h3>
+                    <p data-i18n="features.f3.desc">أسعار شفافة وواضحة بدون رسوم مفاجئة أو تكاليف مخفية.</p>
                 </div>
                 <div class="feature-card anim d4">
-                    <div class="feature-icon-wrap">💳</div>
-                    <h3 data-i18n="features.f4.title">مدفوعات مبسطة</h3>
-                    <p data-i18n="features.f4.desc">الدفع عند التوصيل، المدفوعات الإلكترونية، والفوترة المؤسسية — اختر ما يناسب عملك.</p>
+                    <div class="feature-icon-wrap">📱</div>
+                    <h3 data-i18n="features.f4.title">تجربة طلب سهلة</h3>
+                    <p data-i18n="features.f4.desc">اطلب خلال دقائق قليلة عبر تطبيق سهل وسريع الاستخدام.</p>
                 </div>
                 <div class="feature-card anim d5">
                     <div class="feature-icon-wrap">📍</div>
-                    <h3 data-i18n="features.f5.title">تتبع في الوقت الفعلي</h3>
-                    <p data-i18n="features.f5.desc">حالة الطلب وتتبع التوصيل مباشرة لتعرف دائمًا أين منتجاتك بالضبط.</p>
+                    <h3 data-i18n="features.f5.title">متابعة الطلب لحظة بلحظة</h3>
+                    <p data-i18n="features.f5.desc">اعرف حالة طلبك وموقعه حتى وصوله إليك.</p>
                 </div>
                 <div class="feature-card anim d6">
-                    <div class="feature-icon-wrap">⚡</div>
-                    <h3 data-i18n="features.f6.title">عمليات سلسة</h3>
-                    <p data-i18n="features.f6.desc">فواتير موحدة ولوجستيات فعّالة — كل ذلك من منصة واحدة متكاملة.</p>
+                    <div class="feature-icon-wrap">🛡️</div>
+                    <h3 data-i18n="features.f6.title">خدمة موثوقة</h3>
+                    <p data-i18n="features.f6.desc">فريق دعم جاهز لمساعدتك وملتزم بتقديم تجربة توصيل يمكنك الاعتماد عليها.</p>
                 </div>
             </div>
         </div>
@@ -806,39 +1059,40 @@
             </div>
             <div class="stats-divider"></div>
             <div class="stat-item anim d2">
-                <div class="stat-num" data-i18n="stats.n2">+10</div>
-                <div class="stat-label" data-i18n="stats.l2">قطاعات مخدومة</div>
+                <div class="stat-num" data-i18n="stats.n2">5</div>
+                <div class="stat-label" data-i18n="stats.l2">مدن مخدومة</div>
             </div>
             <div class="stats-divider"></div>
             <div class="stat-item anim d4">
-                <div class="stat-num" data-i18n="stats.n3">24/7</div>
-                <div class="stat-label" data-i18n="stats.l3">دعم متواصل</div>
+                <div class="stat-num" data-i18n="stats.n3">%100</div>
+                <div class="stat-label" data-i18n="stats.l3">أسعار واضحة</div>
             </div>
             <div class="stats-divider"></div>
             <div class="stat-item anim d6">
-                <div class="stat-num" data-i18n="stats.n4">%100</div>
-                <div class="stat-label" data-i18n="stats.l4">رقمي بالكامل</div>
+                <div class="stat-num" data-i18n="stats.n4">24/7</div>
+                <div class="stat-label" data-i18n="stats.l4">دعم متواصل</div>
             </div>
         </div>
     </section>
 
-    <!-- INDUSTRIES -->
+    <!-- SECTORS -->
     <section class="industries">
         <div class="industries-content">
             <div class="section-header">
-                <div class="section-label anim" data-i18n="industries.label">من يستفيد</div>
-                <h2 class="section-title anim" data-i18n-html="industries.title">مصمم لكل <span class="highlight">قطاع</span></h2>
-                <p class="section-desc anim" data-i18n="industries.desc">إمدادي يخدم الشركات بجميع أحجامها وقطاعاتها في المملكة العربية السعودية.</p>
+                <h2 class="section-title anim" data-i18n-html="industries.title">لأن احتياجات كل مكان <span class="highlight">مختلفة</span></h2>
+                <p class="section-desc anim" data-i18n="industries.desc">نوصل المياه والمشروبات للأفراد وقطاع الأعمال بسهولة وموثوقية في الدمام والخبر والظهران</p>
             </div>
-            <div class="industries-grid">
-                <div class="industry-chip anim d1"><div class="ic-icon">🛒</div><span data-i18n="ind.grocery">البقالة والسوبرماركت</span></div>
-                <div class="industry-chip anim d2"><div class="ic-icon">☕</div><span data-i18n="ind.cafes">المقاهي والمطاعم</span></div>
-                <div class="industry-chip anim d3"><div class="ic-icon">🏨</div><span data-i18n="ind.hotels">الفنادق والضيافة</span></div>
-                <div class="industry-chip anim d4"><div class="ic-icon">🏥</div><span data-i18n="ind.health">العيادات الصحية</span></div>
-                <div class="industry-chip anim d5"><div class="ic-icon">🎓</div><span data-i18n="ind.schools">المدارس والجامعات</span></div>
-                <div class="industry-chip anim d6"><div class="ic-icon">🏛️</div><span data-i18n="ind.gov">الجهات الحكومية</span></div>
-                <div class="industry-chip anim d7"><div class="ic-icon">🏢</div><span data-i18n="ind.corp">المكاتب والشركات</span></div>
-                <div class="industry-chip anim d8"><div class="ic-icon">🏭</div><span data-i18n="ind.mfg">التصنيع</span></div>
+            <div class="sectors-grid">
+                <div class="sector-card anim d1">
+                    <div class="sector-icon">🏠</div>
+                    <h3 data-i18n="sector.individualsTitle">للأفراد والمنازل</h3>
+                    <p data-i18n="sector.individualsDesc">توصيل سريع للمياه والمشروبات إلى باب المنزل.</p>
+                </div>
+                <div class="sector-card anim d2">
+                    <div class="sector-icon">🏢</div>
+                    <h3 data-i18n="sector.businessTitle">للأعمال والمنشآت</h3>
+                    <p data-i18n="sector.businessDesc">حل موثوق لتوريد المياه والمشروبات للمكاتب والمقاهي والمطاعم والفنادق والعيادات</p>
+                </div>
             </div>
         </div>
     </section>
@@ -848,7 +1102,7 @@
         <div class="download-card">
             <div class="download-inner">
                 <div class="section-label anim" style="color: var(--gold);" data-i18n="download.label">تحميل التطبيق</div>
-                <h2 class="anim" data-i18n-html="download.title">حمّل <span class="highlight">إمدادي</span> الآن</h2>
+                <h2 class="anim" data-i18n-html="download.title">لا تشيل هم المشاوير وحمل الكراتين.<br>حمّل تطبيق <span class="highlight">إمدادي</span> واطلب المياه والمشروبات بضغطة زر.</h2>
                 <p class="anim" data-i18n="download.desc">ابدأ رحلة مشتريات أذكى وأسرع اليوم. تطبيق إمدادي متاح الآن على جميع المنصات.</p>
                 <div class="download-buttons anim">
                     <a href="https://apps.apple.com/us/app/imdedi-%D8%A5%D9%85%D8%AF%D8%A7%D8%AF%D9%8A/id6744315350" target="_blank" rel="noopener" class="dl-btn">
@@ -871,25 +1125,27 @@
                 <div class="section-label" data-i18n="contact.label">تواصل معنا</div>
                 <h2 data-i18n-html="contact.title">نحن هنا <span class="highlight">لمساعدتك</span></h2>
                 <p data-i18n="contact.desc">هل لديك أسئلة أو استفسارات؟ لا تتردد في التواصل معنا وسنرد عليك في أقرب وقت.</p>
-                <div class="contact-detail">
-                    <div class="contact-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
-                    <div><h4 data-i18n="contact.emailLabel">البريد الإلكتروني</h4><p>info@imdedi.com</p></div>
-                </div>
-                <div class="contact-detail">
-                    <div class="contact-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-                    <div><h4 data-i18n="contact.phoneLabel">الهاتف</h4><p dir="ltr">+966 13 510 1597</p></div>
-                </div>
-                <div class="contact-detail">
-                    <div class="contact-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
-                    <div><h4 data-i18n="contact.locationLabel">الموقع</h4><p data-i18n="contact.locationValue">شارع الرياض، حي الأندلس، الدمام، المنطقة الشرقية</p></div>
-                </div>
-                <div class="contact-detail">
-                    <div class="contact-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><rect x="7" y="7" width="10" height="10" rx="1"/></svg></div>
-                    <div><h4 data-i18n="contact.companyLabel">الشركة</h4><p>NEMA IT SOLUTION Co.</p><p style="font-size:0.78rem;color:var(--light);" data-i18n="contact.crValue">سجل تجاري: 7029838161</p></div>
-                </div>
-                <div class="contact-detail">
-                    <div class="contact-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></div>
-                    <div><h4 data-i18n="contact.coverageLabel">منطقة التوصيل</h4><p data-i18n="contact.coverageValue">المنطقة الشرقية</p></div>
+                <div class="contact-details-grid">
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
+                        <div><h4 data-i18n="contact.emailLabel">البريد الإلكتروني</h4><p>info@imdedi.com</p></div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+                        <div><h4 data-i18n="contact.phoneLabel">الهاتف</h4><p dir="ltr">+966 13 510 1597</p></div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                        <div><h4 data-i18n="contact.locationLabel">الموقع</h4><p data-i18n="contact.locationValue">شارع الرياض، حي الأندلس، الدمام، المنطقة الشرقية</p></div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><rect x="7" y="7" width="10" height="10" rx="1"/></svg></div>
+                        <div><h4 data-i18n="contact.companyLabel">الشركة</h4><p>NEMA IT SOLUTION Co.</p><p style="font-size:0.78rem;color:var(--light);" data-i18n="contact.crValue">سجل تجاري: 7029838161</p></div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></div>
+                        <div><h4 data-i18n="contact.coverageLabel">منطقة التوصيل</h4><p data-i18n="contact.coverageValue">المنطقة الشرقية</p></div>
+                    </div>
                 </div>
             </div>
             <form class="contact-form anim d2" onsubmit="event.preventDefault(); handleFormSubmit();">
@@ -905,7 +1161,7 @@
     <footer class="footer">
         <div class="footer-top">
             <div class="footer-brand">
-                <a href="#hero" class="nav-logo"><span class="im">Im</span><span class="dedi">dedi</span></a>
+                <a href="#hero" class="nav-logo"><span class="im">إمدا</span><span class="dedi">دي</span></a>
                 <p data-i18n="footer.desc">منصة المشتريات B2B الرائدة في المملكة العربية السعودية. نربط الشركات بالمنتجات عالية الجودة بكل سهولة وكفاءة.</p>
             </div>
             <div class="footer-links">
@@ -929,8 +1185,137 @@
         <div class="footer-bottom"><p data-i18n="footer.copyright">© 2026 إمدادي. جميع الحقوق محفوظة.</p></div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
-        function handleFormSubmit() { alert('شكراً لتواصلك معنا! سنرد عليك قريباً.'); }
+        emailjs.init('YOUR_PUBLIC_KEY');
+
+        const translations = {
+            ar: {
+                'nav.home': 'الرئيسية', 'nav.features': 'المميزات', 'nav.download': 'تحميل التطبيق', 'nav.contact': 'تواصل معنا', 'nav.downloadCta': 'تحميل التطبيق',
+                'hero.badge': 'وفّر وقتك، فلوسك، وجهدك',
+                'hero.title': 'توصيل المياه والمشروبات إلى <span class="highlight">باب بيتك</span>',
+                'hero.desc': 'اطلب بسهولة من إمدادي، واستمتع بتوصيل سريع وموثوق في الدمام والخبر والظهران. لا تشيل هم المشاوير والتحميل… اطلب كل اللي تحتاجه بضغطة زر وتوصيل سريع لباب بيتك.',
+                'hero.appStoreLabel': 'حمّل من', 'hero.googleLabel': 'متوفر على',
+                'stat.cities': '<span class="gold">5</span>', 'stat.citiesLabel': 'مدن مخدومة',
+                'stat.prices': '<span class="gold">100%</span>', 'stat.pricesLabel': 'أسعار واضحة',
+                'stat.support': '<span class="gold">24/7</span>', 'stat.supportLabel': 'دعم متواصل',
+                'features.label': 'لماذا تختار إمدادي',
+                'features.title': 'طلب سهلة وتوصيل <span class="highlight">موثوق.</span>',
+                'features.desc': 'نوصل المياه والمشروبات التي تحتاجها بسرعة وموثوقية إلى باب منزلك.',
+                'features.f1.title': 'منتجاتك المفضلة في مكان واحد', 'features.f1.desc': 'اطلب المياه والمشروبات بسهولة من تطبيق واحد بدلاً من التنقل بين عدة متاجر.',
+                'features.f2.title': 'توصيل سريع حتى باب المنزل', 'features.f2.desc': 'استلم طلبك بكل راحة دون عناء المشاوير أو حمل الكراتين الثقيلة.',
+                'features.f3.title': 'أسعار واضحة', 'features.f3.desc': 'أسعار شفافة وواضحة بدون رسوم مفاجئة أو تكاليف مخفية.',
+                'features.f4.title': 'تجربة طلب سهلة', 'features.f4.desc': 'اطلب خلال دقائق قليلة عبر تطبيق سهل وسريع الاستخدام.',
+                'features.f5.title': 'متابعة الطلب لحظة بلحظة', 'features.f5.desc': 'اعرف حالة طلبك وموقعه حتى وصوله إليك.',
+                'features.f6.title': 'خدمة موثوقة', 'features.f6.desc': 'فريق دعم جاهز لمساعدتك وملتزم بتقديم تجربة توصيل يمكنك الاعتماد عليها.',
+                'stats.n1': '+500', 'stats.l1': 'منتج متاح', 'stats.n2': '5', 'stats.l2': 'مدن مخدومة',
+                'stats.n3': '%100', 'stats.l3': 'أسعار واضحة', 'stats.n4': '24/7', 'stats.l4': 'دعم متواصل',
+                'industries.title': 'لأن احتياجات كل مكان <span class="highlight">مختلفة</span>', 'industries.desc': 'نوصل المياه والمشروبات للأفراد وقطاع الأعمال بسهولة وموثوقية في الدمام والخبر والظهران',
+                'sector.individualsTitle': 'للأفراد والمنازل', 'sector.individualsDesc': 'توصيل سريع للمياه والمشروبات إلى باب المنزل.',
+                'sector.businessTitle': 'للأعمال والمنشآت', 'sector.businessDesc': 'حل موثوق لتوريد المياه والمشروبات للمكاتب والمقاهي والمطاعم والفنادق والعيادات',
+                'download.label': 'تحميل التطبيق', 'download.title': 'لا تشيل هم المشاوير وحمل الكراتين.<br>حمّل تطبيق <span class="highlight">إمدادي</span> واطلب المياه والمشروبات بضغطة زر.',
+                'download.desc': 'ابدأ رحلة مشتريات أذكى وأسرع اليوم. تطبيق إمدادي متاح الآن على جميع المنصات.',
+                'download.appStoreLabel': 'حمّل من', 'download.googleLabel': 'متوفر على',
+                'contact.label': 'تواصل معنا', 'contact.title': 'نحن هنا <span class="highlight">لمساعدتك</span>',
+                'contact.desc': 'هل لديك أسئلة أو استفسارات؟ لا تتردد في التواصل معنا وسنرد عليك في أقرب وقت.',
+                'contact.emailLabel': 'البريد الإلكتروني', 'contact.phoneLabel': 'الهاتف',
+                'contact.locationLabel': 'الموقع', 'contact.locationValue': 'شارع الرياض، حي الأندلس، الدمام، المنطقة الشرقية',
+                'contact.companyLabel': 'الشركة', 'contact.crValue': 'سجل تجاري: 7029838161',
+                'contact.coverageLabel': 'منطقة التوصيل', 'contact.coverageValue': 'المنطقة الشرقية',
+                'contact.form.name': 'الاسم الكامل', 'contact.form.namePh': 'أدخل اسمك الكامل',
+                'contact.form.email': 'البريد الإلكتروني', 'contact.form.emailPh': 'أدخل بريدك الإلكتروني',
+                'contact.form.message': 'الرسالة', 'contact.form.messagePh': 'اكتب رسالتك هنا...',
+                'contact.form.submit': 'إرسال الرسالة', 'contact.form.alert': 'شكراً لتواصلك معنا! سنرد عليك قريباً.',
+                'footer.desc': 'منصة المشتريات الرائدة في المنطقة الشرقية. نوفر لك المياه والمشروبات الغازية بأسعار الجملة مع توصيل سريع.',
+                'footer.quickLinks': 'روابط سريعة', 'footer.followUs': 'تابعنا',
+                'footer.copyright': '© 2026 إمدادي. جميع الحقوق محفوظة.',
+                'marquee': ['منتجات حصرية', 'أسعار شفافة', 'توصيل موثوق', 'بدون مندوبي مبيعات', 'رؤى مدعومة بالذكاء الاصطناعي', 'دعم على مدار الساعة'],
+                'pageTitle': 'إمدادي — منصة المشتريات الذكية'
+            },
+            en: {
+                'nav.home': 'Home', 'nav.features': 'Features', 'nav.download': 'Download App', 'nav.contact': 'Contact Us', 'nav.downloadCta': 'Download App',
+                'hero.badge': 'Save your time, money, and effort',
+                'hero.title': 'Water & Beverage Delivery to <span class="highlight">Your Doorstep</span>',
+                'hero.desc': 'Order easily from Imdedi and enjoy fast, reliable delivery in Dammam, Khobar, and Dhahran. No more hassle with trips and loading — order everything you need with one tap and get fast delivery to your door.',
+                'hero.appStoreLabel': 'Download on the', 'hero.googleLabel': 'Get it on',
+                'stat.cities': '<span class="gold">5</span>', 'stat.citiesLabel': 'Cities Served',
+                'stat.prices': '<span class="gold">100%</span>', 'stat.pricesLabel': 'Transparent Prices',
+                'stat.support': '<span class="gold">24/7</span>', 'stat.supportLabel': 'Continuous Support',
+                'features.label': 'Why Choose Imdedi',
+                'features.title': 'Easy Ordering & <span class="highlight">Reliable Delivery.</span>',
+                'features.desc': 'We deliver the water and beverages you need quickly and reliably to your doorstep.',
+                'features.f1.title': 'All Your Favorites in One Place', 'features.f1.desc': 'Order water and beverages easily from one app instead of browsing multiple stores.',
+                'features.f2.title': 'Fast Delivery to Your Door', 'features.f2.desc': 'Receive your order comfortably without the hassle of trips or carrying heavy crates.',
+                'features.f3.title': 'Clear Pricing', 'features.f3.desc': 'Transparent and clear prices with no surprise fees or hidden costs.',
+                'features.f4.title': 'Easy Ordering Experience', 'features.f4.desc': 'Order in just a few minutes through a simple and fast app.',
+                'features.f5.title': 'Real-Time Order Tracking', 'features.f5.desc': 'Know your order status and location until it reaches you.',
+                'features.f6.title': 'Reliable Service', 'features.f6.desc': 'A support team ready to help you, committed to delivering a trustworthy experience.',
+                'stats.n1': '+500', 'stats.l1': 'Products Available', 'stats.n2': '5', 'stats.l2': 'Cities Served',
+                'stats.n3': '100%', 'stats.l3': 'Transparent Prices', 'stats.n4': '24/7', 'stats.l4': 'Continuous Support',
+                'industries.title': 'Because Every Place Has <span class="highlight">Different Needs</span>', 'industries.desc': 'We deliver water and beverages to individuals and businesses easily and reliably in Dammam, Khobar, and Dhahran.',
+                'sector.individualsTitle': 'For Individuals & Homes', 'sector.individualsDesc': 'Fast delivery of water and beverages right to your doorstep.',
+                'sector.businessTitle': 'For Businesses & Establishments', 'sector.businessDesc': 'A reliable solution for supplying water and beverages to offices, cafés, restaurants, hotels, and clinics.',
+                'download.label': 'Download App', 'download.title': 'No more trips and carrying crates.<br>Download <span class="highlight">Imdedi</span> and order water & beverages with one tap.',
+                'download.desc': 'Start a smarter, faster procurement journey today. Imdedi is available on all platforms.',
+                'download.appStoreLabel': 'Download on the', 'download.googleLabel': 'Get it on',
+                'contact.label': 'Contact Us', 'contact.title': 'We\'re Here <span class="highlight">to Help</span>',
+                'contact.desc': 'Have questions or inquiries? Don\'t hesitate to reach out — we\'ll get back to you as soon as possible.',
+                'contact.emailLabel': 'Email', 'contact.phoneLabel': 'Phone',
+                'contact.locationLabel': 'Location', 'contact.locationValue': 'Alriyadh St, Andalusia District, Dammam, Eastern Province',
+                'contact.companyLabel': 'Company', 'contact.crValue': 'CR: 7029838161',
+                'contact.coverageLabel': 'Delivery Coverage', 'contact.coverageValue': 'Eastern Region',
+                'contact.form.name': 'Full Name', 'contact.form.namePh': 'Enter your full name',
+                'contact.form.email': 'Email Address', 'contact.form.emailPh': 'Enter your email address',
+                'contact.form.message': 'Message', 'contact.form.messagePh': 'Write your message here...',
+                'contact.form.submit': 'Send Message', 'contact.form.alert': 'Thank you for reaching out! We\'ll get back to you soon.',
+                'footer.desc': 'The leading wholesale platform in the Eastern Region. We provide water and soft drinks at wholesale prices with fast delivery.',
+                'footer.quickLinks': 'Quick Links', 'footer.followUs': 'Follow Us',
+                'footer.copyright': '© 2026 Imdedi. All rights reserved.',
+                'marquee': ['Exclusive Products', 'Transparent Pricing', 'Reliable Delivery', 'No Sales Reps Needed', 'AI-Powered Insights', '24/7 Support'],
+                'pageTitle': 'Imdedi — Smart Procurement Platform'
+            }
+        };
+
+        let currentLang = 'ar';
+
+        function setLang(lang) {
+            currentLang = lang;
+            const t = translations[lang];
+            document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+            document.documentElement.setAttribute('lang', lang);
+            document.body.style.direction = lang === 'ar' ? 'rtl' : 'ltr';
+            document.title = t['pageTitle'];
+            document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t[el.dataset.i18n]; });
+            document.querySelectorAll('[data-i18n-html]').forEach(el => { el.innerHTML = t[el.dataset.i18nHtml]; });
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { el.placeholder = t[el.dataset.i18nPlaceholder]; });
+            const track = document.querySelector('.marquee-track');
+            const items = t['marquee'];
+            track.innerHTML = [...items, ...items].map(text => `<div class="marquee-item">${text}</div>`).join('');
+            document.querySelectorAll('.lang-btn').forEach(btn => { btn.classList.toggle('active', btn.dataset.lang === lang); });
+        }
+
+        function handleFormSubmit() {
+            const btn = document.querySelector('.form-submit');
+            const originalText = btn.textContent;
+            btn.disabled = true;
+            btn.textContent = currentLang === 'ar' ? 'جاري الإرسال...' : 'Sending...';
+
+            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+                from_name: document.getElementById('name').value,
+                from_email: document.getElementById('email').value,
+                message: document.getElementById('message').value,
+                to_email: 'info@imdedi.com'
+            }).then(function() {
+                alert(translations[currentLang]['contact.form.alert']);
+                document.querySelector('.contact-form').reset();
+            }, function(error) {
+                alert(currentLang === 'ar' ? 'حدث خطأ. حاول مرة أخرى.' : 'An error occurred. Please try again.');
+                console.error('EmailJS error:', error);
+            }).finally(function() {
+                btn.disabled = false;
+                btn.textContent = originalText;
+            });
+        }
 
         window.addEventListener('scroll', () => {
             document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
@@ -942,9 +1327,22 @@
 
         document.querySelectorAll('.anim').forEach(el => observer.observe(el));
 
+        const menuToggle = document.getElementById('menuToggle');
+        const navOverlay = document.getElementById('navOverlay');
+        const navbar = document.getElementById('navbar');
+
+        function closeMenu() { navbar.classList.remove('nav-open'); }
+
+        menuToggle.addEventListener('click', () => {
+            navbar.classList.toggle('nav-open');
+        });
+
+        navOverlay.addEventListener('click', closeMenu);
+
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
+                closeMenu();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });

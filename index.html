@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إمدادي — منصة المشتريات الذكية</title>
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -50,9 +51,11 @@
             box-shadow: 0 1px 30px rgba(0,0,0,0.05);
         }
 
-        .nav-logo { font-size: 1.8rem; font-weight: 800; text-decoration: none; }
-        .nav-logo .im { color: var(--gold); }
-        .nav-logo .dedi { color: var(--green); }
+        .nav-logo { text-decoration: none; display: inline-flex; align-items: center; }
+        .nav-logo img { height: 38px; width: auto; display: block; }
+        .navbar.scrolled .nav-logo img { height: 32px; }
+
+        .footer-brand .nav-logo img { height: auto; max-height: 50px; }
 
         .nav-links { display: flex; align-items: center; gap: 2.2rem; list-style: none; }
 
@@ -669,8 +672,7 @@
             align-items: start; gap: 3rem;
         }
 
-        .footer-brand .nav-logo { font-size: 2rem; display: block; margin-bottom: 1rem; }
-        .footer-brand .nav-logo .dedi { color: var(--white); }
+        .footer-brand .nav-logo { display: block; margin-bottom: 1rem; }
         .footer-brand p { color: rgba(255,255,255,0.5); font-size: 0.92rem; line-height: 1.75; max-width: 340px; }
 
         .footer-links h4 { color: var(--white); font-size: 0.95rem; font-weight: 700; margin-bottom: 1.1rem; }
@@ -932,7 +934,7 @@
 
     <!-- NAVBAR -->
     <nav class="navbar" id="navbar">
-        <a href="#hero" class="nav-logo"><span class="im">إمدا</span><span class="dedi">دي</span></a>
+        <a href="#hero" class="nav-logo"><img src="full_logo.png" alt="إمدادي"></a>
         <button class="menu-toggle" id="menuToggle" aria-label="القائمة"><span></span></button>
         <div class="nav-overlay" id="navOverlay"></div>
         <ul class="nav-links">
@@ -1054,8 +1056,8 @@
     <section class="stats-section">
         <div class="stats-grid">
             <div class="stat-item anim">
-                <div class="stat-num" data-i18n="stats.n1">+500</div>
-                <div class="stat-label" data-i18n="stats.l1">منتج متاح</div>
+                <div class="stat-num" data-i18n="stats.n1">+5000</div>
+                <div class="stat-label" data-i18n="stats.l1">طلب تم توصيله</div>
             </div>
             <div class="stats-divider"></div>
             <div class="stat-item anim d2">
@@ -1161,8 +1163,8 @@
     <footer class="footer">
         <div class="footer-top">
             <div class="footer-brand">
-                <a href="#hero" class="nav-logo"><span class="im">إمدا</span><span class="dedi">دي</span></a>
-                <p data-i18n="footer.desc">منصة المشتريات B2B الرائدة في المملكة العربية السعودية. نربط الشركات بالمنتجات عالية الجودة بكل سهولة وكفاءة.</p>
+                <a href="#hero" class="nav-logo"><img src="full_logo_white.png" alt="إمدادي"></a>
+                <p data-i18n="footer.desc">تطبيق متخصص في توصيل المياه والمشروبات إلى المنازل وقطاع الأعمال، مع خدمة موثوقة وتوصيل سريع في الدمام والخبر والظهران.</p>
             </div>
             <div class="footer-links">
                 <h4 data-i18n="footer.quickLinks">روابط سريعة</h4>
@@ -1208,7 +1210,7 @@
                 'features.f4.title': 'تجربة طلب سهلة', 'features.f4.desc': 'اطلب خلال دقائق قليلة عبر تطبيق سهل وسريع الاستخدام.',
                 'features.f5.title': 'متابعة الطلب لحظة بلحظة', 'features.f5.desc': 'اعرف حالة طلبك وموقعه حتى وصوله إليك.',
                 'features.f6.title': 'خدمة موثوقة', 'features.f6.desc': 'فريق دعم جاهز لمساعدتك وملتزم بتقديم تجربة توصيل يمكنك الاعتماد عليها.',
-                'stats.n1': '+500', 'stats.l1': 'منتج متاح', 'stats.n2': '5', 'stats.l2': 'مدن مخدومة',
+                'stats.n1': '+5000', 'stats.l1': 'طلب تم توصيله', 'stats.n2': '5', 'stats.l2': 'مدن مخدومة',
                 'stats.n3': '%100', 'stats.l3': 'أسعار واضحة', 'stats.n4': '24/7', 'stats.l4': 'دعم متواصل',
                 'industries.title': 'لأن احتياجات كل مكان <span class="highlight">مختلفة</span>', 'industries.desc': 'نوصل المياه والمشروبات للأفراد وقطاع الأعمال بسهولة وموثوقية في الدمام والخبر والظهران',
                 'sector.individualsTitle': 'للأفراد والمنازل', 'sector.individualsDesc': 'توصيل سريع للمياه والمشروبات إلى باب المنزل.',
@@ -1226,7 +1228,7 @@
                 'contact.form.email': 'البريد الإلكتروني', 'contact.form.emailPh': 'أدخل بريدك الإلكتروني',
                 'contact.form.message': 'الرسالة', 'contact.form.messagePh': 'اكتب رسالتك هنا...',
                 'contact.form.submit': 'إرسال الرسالة', 'contact.form.alert': 'شكراً لتواصلك معنا! سنرد عليك قريباً.',
-                'footer.desc': 'منصة المشتريات الرائدة في المنطقة الشرقية. نوفر لك المياه والمشروبات الغازية بأسعار الجملة مع توصيل سريع.',
+                'footer.desc': 'تطبيق متخصص في توصيل المياه والمشروبات إلى المنازل وقطاع الأعمال، مع خدمة موثوقة وتوصيل سريع في الدمام والخبر والظهران.',
                 'footer.quickLinks': 'روابط سريعة', 'footer.followUs': 'تابعنا',
                 'footer.copyright': '© 2026 إمدادي. جميع الحقوق محفوظة.',
                 'marquee': ['منتجات حصرية', 'أسعار شفافة', 'توصيل موثوق', 'بدون مندوبي مبيعات', 'رؤى مدعومة بالذكاء الاصطناعي', 'دعم على مدار الساعة'],
@@ -1250,7 +1252,7 @@
                 'features.f4.title': 'Easy Ordering Experience', 'features.f4.desc': 'Order in just a few minutes through a simple and fast app.',
                 'features.f5.title': 'Real-Time Order Tracking', 'features.f5.desc': 'Know your order status and location until it reaches you.',
                 'features.f6.title': 'Reliable Service', 'features.f6.desc': 'A support team ready to help you, committed to delivering a trustworthy experience.',
-                'stats.n1': '+500', 'stats.l1': 'Products Available', 'stats.n2': '5', 'stats.l2': 'Cities Served',
+                'stats.n1': '+5000', 'stats.l1': 'Orders Delivered', 'stats.n2': '5', 'stats.l2': 'Cities Served',
                 'stats.n3': '100%', 'stats.l3': 'Transparent Prices', 'stats.n4': '24/7', 'stats.l4': 'Continuous Support',
                 'industries.title': 'Because Every Place Has <span class="highlight">Different Needs</span>', 'industries.desc': 'We deliver water and beverages to individuals and businesses easily and reliably in Dammam, Khobar, and Dhahran.',
                 'sector.individualsTitle': 'For Individuals & Homes', 'sector.individualsDesc': 'Fast delivery of water and beverages right to your doorstep.',
@@ -1268,7 +1270,7 @@
                 'contact.form.email': 'Email Address', 'contact.form.emailPh': 'Enter your email address',
                 'contact.form.message': 'Message', 'contact.form.messagePh': 'Write your message here...',
                 'contact.form.submit': 'Send Message', 'contact.form.alert': 'Thank you for reaching out! We\'ll get back to you soon.',
-                'footer.desc': 'The leading wholesale platform in the Eastern Region. We provide water and soft drinks at wholesale prices with fast delivery.',
+                'footer.desc': 'An app specialized in delivering water and beverages to homes and businesses, with reliable service and fast delivery in Dammam, Khobar, and Dhahran.',
                 'footer.quickLinks': 'Quick Links', 'footer.followUs': 'Follow Us',
                 'footer.copyright': '© 2026 Imdedi. All rights reserved.',
                 'marquee': ['Exclusive Products', 'Transparent Pricing', 'Reliable Delivery', 'No Sales Reps Needed', 'AI-Powered Insights', '24/7 Support'],
